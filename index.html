@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI අනාවැකිකරු – තැන්පත් කරන්න</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .console-box {
+      font-family: monospace;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 20px #00ff88;
+      color: #00ff88;
+      height: 250px;
+      overflow-y: auto;
+    }
+    .loading-screen {
+      font-family: monospace;
+      background: #000;
+      color: #00ff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      z-index: 50;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .hidden-screen { display: none; }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <div id="loading" class="loading-screen">
+    <p>පූරණය වෙමින්... අපි ඔබේ අත්දැකීම වින්‍යාස කරන තෙක් රැඳී සිටින්න.</p>
+  </div>
+  <div id="mainContent" class="hidden-screen">
+    <header class="w-full bg-gray-800 p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-green-400">1xbet AI පුරෝකථනය කරන්නා</h1>
+      <nav class="space-x-4">
+        <a href="#how" class="hover:text-green-400">එය ක්රියා කරන ආකාරය</a>
+        <a href="#games" class="hover:text-green-400">ක්රීඩා</a>
+        <a href="#start" class="hover:text-green-400">ආරම්භ කිරීමට</a>
+      </nav>
+    </header>
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">
+        AI ක්‍රීඩා අනාවැකි සමඟ සැබෑ මුදල් උපයන්න
+      </h2>
+      <div class="mb-4 text-lg font-semibold text-yellow-300">
+        👋 සුභ පැතුම් සහ නිල සේවයට සාදරයෙන් පිළිගනිමු <span class="text-green-400">Ruwan</span> !
+      </div>
+      <p class="max-w-xl mb-8 text-gray-300">
+        ගුවන් නියමුවන්, පතල් සහ දඬුවම් ඔට්ටු ඇල්ලීමේදී අපගේ බුද්ධිමත් AI සමඟ ජයග්‍රහණය කරන දහස් ගණනක් පරිශීලකයින් හා එක්වන්න. 98% නිරවද්‍යතාවය, තත්‍ය කාලීන අනාවැකි සහ ක්ෂණික මුදල් ආපසු ගැනීම්. !
+      </p>
+      <!-- ID input for connection -->
+      <input id="userId" type="text" placeholder="ඔබගේ පරිශීලක නාමය ඇතුලත් කරන්න" class="bg-gray-700 text-white p-3 rounded-md mb-4" />
+      <button id="connectButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl text-lg transition">START HACK</button>
+      <!-- Success message -->
+      <div id="connectionSuccess" class="hidden text-green-400 font-bold mt-6">
+        <p>ගිණුම් හැඳුනුම්පත : <span id="accountIdDisplay">1234567890</span> සාර්ථකව සම්බන්ධ විය !</p>
+        <p>තත්ත්වය : ක්රියාකාරී | 100% පුරෝකථන නිරවද්‍යතාවය | AI ඇල්ගොරිතම විශ්ලේෂණය කරන ලදී</p>
+        <button id="getSignalButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition mt-4">Obtenir un signal</button>
+      </div>
+      <!-- Error message for deposit + PROMOCODE block -->
+      <div id="errorBox" class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
+        <h2 class="text-xl font-bold mb-2">⚠️ තැන්පතු හමු නොවීය</h2>
+        <p class="mb-4">ඔබගේ ශේෂය හිස් බව පෙනේ. කරුණාකර තැන්පතුවක් කරන්න <strong>3800 LKR</strong> සංඥා වෙත ප්‍රවේශය අගුළු ඇර ජයග්‍රහණය ආරම්භ කිරීමට !</p>
+        <a href="https://reffpa.com/L?tag=d_4628653m_97c_bat_[]general[]_d173877_l213928_adaptive_banner&site=4628653&ad=97&r=registration" target="_blank" id="depositButton" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">
+          දැන් 1xbet මත තැන්පත් කරන්න
+        </a>
+        <!-- Промокод и напоминание -->
+        <div class="mt-6 bg-red-800 text-white p-4 rounded-lg font-bold text-center">
+           <div class="mb-1 text-lg">ඔබේ ප්‍රවර්ධන කේතය : <span class="bg-black p-1 rounded text-green-400">ALX55</span></div>
+<div>ලියාපදිංචි වීමට අමතක නොකරන්න. <span class="underline">අද්විතීය ලෙස</span> සියලුම විශේෂාංග වෙත ප්‍රවේශ වීමට මෙම ප්‍රවර්ධන කේතය භාවිතා කරන්න.&nbsp;!</div>
+        </div>
+      </div>
+    </section>
+    <!-- Остальное без изменений -->
+    <section class="bg-gray-800 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">Gagnants du jour (XAF)</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto text-sm text-green-300">
+        <p>👤 පරිශීලක ID : 1218473422 – 275 328 LKR</p>
+        <p>👤 පරිශීලක ID : 9912384741 – 221 900 LKR</p>
+        <p>👤 පරිශීලක ID : 3099234822 – 184 120 LKR</p>
+        <p>👤 පරිශීලක ID : 1187339121 – 150 000 LKR</p>
+        <p>👤 පරිශීලක ID : 4412900113 – 132 850 LKR</p>
+        <p>👤 පරිශීලක ID : 8283721091 – 128 440 LKR</p>
+        <p>👤 පරිශීලක ID : 7751937742 – 100 705 LKR</p>
+        <p>👤 පරිශීලක ID : 5554921811 – 98 330 LKR</p>
+        <p>👤 පරිශීලක ID : 1983238742 – 85 000 LKR</p>
+        <p>👤 පරිශීලක ID : 3377749301 – 79 210 LKR</p>
+      </div>
+    </section>
+    <section id="games" class="bg-gray-800 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">සහය දක්වන ක්‍රීඩා</h3>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">🎮 Aviator</h4>
+          <p class="text-gray-300">ගුවන් යානය ගුවන් ගත වීමට පෙර ආපසු යා යුතු වේලාව පුරෝකථනය කරන්න! අපගේ AI තථ්‍ය කාලීනව ප්‍රවණතා හඳුනා ගනී.</p>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">💣 Mines</h4>
+          <p class="text-gray-300">බෝම්බ වලින් වළකින්න, ත්‍යාග එකතු කරන්න. අපගේ පද්ධතිය උපරිම ලාභය සඳහා අවම අවදානම් මාර්ග සොයා ගනී.</p>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">🥅 Penalty</h4>
+          <p class="text-gray-300">වෙඩි තැබිය යුතු හෝ කිමිදිය යුතු ස්ථානය දැනගන්න. දත්ත මත පදනම් වූ අනාවැකි සමඟ ගෝල රකින්නා පරාජය කරන්න.</p>
+        </div>
+      </div>
+    </section>
+    <section id="how" class="bg-gray-900 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">Comment ça marche</h3>
+      <div class="max-w-3xl mx-auto space-y-4 text-gray-300">
+        <p>📡 අපගේ AI සජීවී දත්ත සහ ඓතිහාසික ක්‍රීඩා දත්ත 24/7 විශ්ලේෂණය කරයි.</p>
+        <p>💡 ස්ථාවර ජයග්‍රහණ සඳහා ඉඩ සලසන රටා ඇය හඳුනා ගනී..</p>
+        <p>📲 ඔබට තත්‍ය කාලීනව විශ්වාසදායක සංඥා ලැබේ — කෙලින්ම ඔබගේ උපාංගයට.</p>
+      </div>
+    </section>
+    <section class="bg-black py-12 px-6 text-center">
+      <h3 class="text-xl font-bold text-green-400 mb-4">[ Console – Journal de surveillance ]</h3>
+      <div class="console-box max-w-3xl mx-auto text-left" id="console">
+        <p>[INFO] ක්රියාකාරී අනාවැකි සේවාව ✅</p>
+      </div>
+    </section>
+    <footer class="text-center text-gray-500 text-sm py-6">
+      © 2025 AI Predictor. 1xbet සමඟ අනුබද්ධ නොවේ. වගකීමෙන් යුතුව භාවිතා කරන්න.
+    </footer>
+  </div>
+  <script>
+    setTimeout(() => {
+      document.getElementById("loading").classList.add("hidden-screen");
+      document.getElementById("mainContent").classList.remove("hidden-screen");
+    }, 3000);
+    document.getElementById("connectButton").addEventListener("click", () => {
+      const userId = document.getElementById("userId").value;
+      if (userId) {
+        document.getElementById("accountIdDisplay").innerText = userId;
+        document.getElementById("connectionSuccess").classList.remove("hidden");
+        document.getElementById("errorBox").classList.add("hidden");
+      }
+    });
+    document.getElementById("getSignalButton").addEventListener("click", () => {
+      document.getElementById("errorBox").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
